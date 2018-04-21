@@ -1,0 +1,5 @@
+env: prod
+app_dir: /tmp/
+
+p1: test-param1-prod
+p2: test-param2-prod

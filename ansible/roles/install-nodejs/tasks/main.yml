@@ -1,0 +1,22 @@
+---
+- name: Update packages
+  package:
+    name: "*"
+    state: latest
+
+- name: Copy nodejs rpm
+  copy:
+    src: "{{ role_path }}/node.rpm"
+    dest: /tmp/
+
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - /tmp/node.rpm
+
+- name: Remove temporary rpm file
+  file:
+    path: "/tmp/node.rpm"
+    state: absent

@@ -1,0 +1,25 @@
+---
+- name: Copy app archive
+  copy:
+    src: "{{ role_path }}/app.tar.gz"
+    dest: /tmp/
+
+- name: Extract archive
+  unarchive:
+    remote_src: yes
+    src: "/tmp/app.tar.gz"
+    dest: "{{ app_dir }}"
+    owner: root
+    group: root
+
+- name: Copy app config
+  template:
+    src: "{{ role_path }}/templates/config.json.j2"
+    dest: "{{ app_dir }}/config.json"
+
+- name: Start app
+  become_user: root
+  command: "node start"
+
+
+

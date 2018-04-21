@@ -1,0 +1,4 @@
+.vagrant
+ansible/.vault_file
+*.retry
+notes.txt
